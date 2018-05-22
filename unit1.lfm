@@ -59,7 +59,7 @@ object Form1: TForm1
     Height = 93
     Top = 206
     Width = 447
-    Caption = '?????????!'
+    Caption = 'Правильно!'
     Enabled = False
     Font.CharSet = RUSSIAN_CHARSET
     Font.Color = clBlack
