@@ -1,0 +1,308 @@
+object Form1: TForm1
+  Left = 286
+  Height = 299
+  Top = 236
+  Width = 447
+  HorzScrollBar.Page = 446
+  VertScrollBar.Page = 298
+  Caption = 'PAROLE'
+  ClientHeight = 299
+  ClientWidth = 447
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  Visible = True
+  object Label1: TLabel
+    AnchorSideLeft.Side = asrBottom
+    Left = 151
+    Height = 43
+    Top = 48
+    Width = 145
+    Alignment = taCenter
+    Anchors = [akTop]
+    Caption = 'Label1'
+    Font.CharSet = RUSSIAN_CHARSET
+    Font.Color = clBlack
+    Font.Height = -40
+    Font.Name = 'Courier New'
+    Font.Pitch = fpFixed
+    ParentColor = False
+  end
+  object Label2: TLabel
+    AnchorSideLeft.Side = asrBottom
+    Left = 127
+    Height = 59
+    Top = 136
+    Width = 193
+    Alignment = taCenter
+    Anchors = [akTop]
+    Caption = 'Label2'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
+    Font.Height = -53
+    Font.Name = 'Courier New'
+    Font.Pitch = fpFixed
+    ParentColor = False
+  end
+  object Label3: TLabel
+    Height = 20
+    Width = 47
+    Caption = 'Label3'
+    ParentColor = False
+  end
+  object Label4: TLabel
+    Left = 313
+    Height = 20
+    Width = 134
+    Caption = 'www.bmyr.kiev.ua'
+    ParentColor = False
+  end
+  object Button1: TButton
+    Height = 93
+    Top = 206
+    Width = 447
+    Caption = 'œ–¿¬»À‹ÕŒ!!!'
+    Enabled = False
+    Font.CharSet = RUSSIAN_CHARSET
+    Font.Color = clBlack
+    Font.Height = -53
+    Font.Name = 'Arial'
+    Font.Pitch = fpVariable
+    OnClick = Button1Click
+    TabOrder = 0
+    Visible = False
+  end
+  object ToggleBox1: TToggleBox
+    Left = 72
+    Height = 23
+    Top = 208
+    Width = 24
+    Caption = 'Q'
+    Enabled = False
+    TabOrder = 1
+  end
+  object ToggleBox2: TToggleBox
+    Left = 104
+    Height = 23
+    Top = 208
+    Width = 24
+    Caption = 'W'
+    Enabled = False
+    TabOrder = 2
+  end
+  object ToggleBox3: TToggleBox
+    Left = 136
+    Height = 23
+    Top = 208
+    Width = 24
+    Caption = 'E'
+    Enabled = False
+    TabOrder = 3
+  end
+  object ToggleBox5: TToggleBox
+    Left = 200
+    Height = 23
+    Top = 208
+    Width = 24
+    Caption = 'T'
+    Enabled = False
+    TabOrder = 4
+  end
+  object ToggleBox6: TToggleBox
+    Left = 232
+    Height = 23
+    Top = 208
+    Width = 24
+    Caption = 'Y'
+    Enabled = False
+    TabOrder = 5
+  end
+  object ToggleBox7: TToggleBox
+    Left = 264
+    Height = 23
+    Top = 208
+    Width = 24
+    Caption = 'U'
+    Enabled = False
+    TabOrder = 6
+  end
+  object ToggleBox8: TToggleBox
+    Left = 296
+    Height = 23
+    Top = 208
+    Width = 24
+    Caption = 'I'
+    Enabled = False
+    TabOrder = 7
+  end
+  object ToggleBox9: TToggleBox
+    Left = 328
+    Height = 23
+    Top = 208
+    Width = 24
+    Caption = 'O'
+    Enabled = False
+    TabOrder = 8
+  end
+  object ToggleBox10: TToggleBox
+    Left = 360
+    Height = 23
+    Top = 208
+    Width = 24
+    Caption = 'P'
+    Enabled = False
+    TabOrder = 9
+  end
+  object ToggleBox11: TToggleBox
+    Left = 80
+    Height = 23
+    Top = 240
+    Width = 24
+    Caption = 'A'
+    Enabled = False
+    TabOrder = 10
+  end
+  object ToggleBox12: TToggleBox
+    Left = 112
+    Height = 23
+    Top = 240
+    Width = 24
+    Caption = 'S'
+    Enabled = False
+    TabOrder = 11
+  end
+  object ToggleBox13: TToggleBox
+    Left = 144
+    Height = 23
+    Top = 240
+    Width = 24
+    Caption = 'D'
+    Enabled = False
+    TabOrder = 12
+  end
+  object ToggleBox14: TToggleBox
+    Left = 176
+    Height = 23
+    Top = 240
+    Width = 24
+    Caption = 'F'
+    Enabled = False
+    TabOrder = 13
+  end
+  object ToggleBox15: TToggleBox
+    Left = 208
+    Height = 23
+    Top = 240
+    Width = 24
+    Caption = 'G'
+    Enabled = False
+    TabOrder = 14
+  end
+  object ToggleBox4: TToggleBox
+    Left = 168
+    Height = 23
+    Top = 208
+    Width = 24
+    Caption = 'R'
+    Enabled = False
+    TabOrder = 15
+  end
+  object ToggleBox16: TToggleBox
+    Left = 240
+    Height = 23
+    Top = 240
+    Width = 24
+    Caption = 'H'
+    Enabled = False
+    TabOrder = 16
+  end
+  object ToggleBox17: TToggleBox
+    Left = 272
+    Height = 23
+    Top = 240
+    Width = 24
+    Caption = 'J'
+    Enabled = False
+    TabOrder = 17
+  end
+  object ToggleBox18: TToggleBox
+    Left = 304
+    Height = 23
+    Top = 240
+    Width = 24
+    Caption = 'K'
+    Enabled = False
+    TabOrder = 18
+  end
+  object ToggleBox19: TToggleBox
+    Left = 336
+    Height = 23
+    Top = 240
+    Width = 24
+    Caption = 'L'
+    Enabled = False
+    TabOrder = 19
+  end
+  object ToggleBox20: TToggleBox
+    Left = 88
+    Height = 23
+    Top = 272
+    Width = 24
+    Caption = 'Z'
+    Enabled = False
+    TabOrder = 20
+  end
+  object ToggleBox21: TToggleBox
+    Left = 120
+    Height = 23
+    Top = 272
+    Width = 24
+    Caption = 'X'
+    Enabled = False
+    TabOrder = 21
+  end
+  object ToggleBox22: TToggleBox
+    Left = 152
+    Height = 23
+    Top = 272
+    Width = 24
+    Caption = 'C'
+    Enabled = False
+    TabOrder = 22
+  end
+  object ToggleBox23: TToggleBox
+    Left = 184
+    Height = 23
+    Top = 272
+    Width = 24
+    Caption = 'V'
+    Enabled = False
+    TabOrder = 23
+  end
+  object ToggleBox24: TToggleBox
+    Left = 216
+    Height = 23
+    Top = 272
+    Width = 24
+    Caption = 'B'
+    Enabled = False
+    TabOrder = 24
+  end
+  object ToggleBox25: TToggleBox
+    Left = 248
+    Height = 23
+    Top = 272
+    Width = 24
+    Caption = 'N'
+    Enabled = False
+    TabOrder = 25
+  end
+  object ToggleBox26: TToggleBox
+    Left = 280
+    Height = 23
+    Top = 272
+    Width = 24
+    Caption = 'M'
+    Enabled = False
+    TabOrder = 26
+  end
+end
