@@ -47,10 +47,10 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 
-    procedure savescore;
-    procedure newword;
-    procedure label2draw;
-    procedure showcontrols(setme: boolean);
+    procedure SaveScore;
+    procedure NewWord;
+    procedure Label2Draw;
+    procedure ShowControls(SetMe: boolean);
 
   private
     { private declarations }
@@ -59,24 +59,24 @@ type
   end;
 
 const
-  letters: set of char = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
+  Letters: set of char = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
     'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
 const
-  maxwords = 1000;
+  MaxWords = 1000;
 
 const
-  maxletters = 20;
+  MaxLetters = 20;
 
 var
   Form1: TForm1;
-  nwords, currentword: integer;
-  wrongletters: string;
-  words: array[1..maxwords, 1..2] of string;
-  score: array[1..maxwords] of byte;
-  file1: Text;
-  file2: file of byte;
-  label2open: array[1..maxletters] of boolean;
+  NWords, CurrentWord: integer;
+  WrongLetters: string;
+  Words: array[1..MaxWords, 1..2] of string;
+  Score: array[1..MaxWords] of byte;
+  File1: Text;
+  File2: file of byte;
+  Label2Open: array[1..MaxLetters] of boolean;
 
 implementation
 
@@ -86,314 +86,287 @@ procedure TForm1.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState)
 var
   ch1: char;
   i: integer;
-  found: boolean;
+  Found: boolean;
 begin
   ch1 := chr(lo(key));
-  if ch1 in letters then
+  if ch1 in Letters then
   begin
-    found := False;
-    for i := 1 to length(words[currentword, 1]) do
-      if ch1 = words[currentword, 1][i] then
+    Found := false;
+    for i := 1 to Length(Words[CurrentWord, 1]) do
+      if ch1 = Words[CurrentWord, 1][i] then
       begin
-        found := True;
-        label2open[i] := True;
+        Found := true;
+        Label2Open[i] := true;
       end;
-    if found then
+    if Found then
     begin
-      found := True;
-      for i := 1 to length(words[currentword, 1]) do
-        if not label2open[i] then
-          found := False;
-      if (found) and (button1.Visible = False) then
+      Found := true;
+      for i := 1 to Length(Words[CurrentWord, 1]) do
+        if not Label2Open[i] then
+          Found := false;
+      if (Found) and (Button1.Visible = false) then
       begin
-        if score[currentword] < 250 then
-          Inc(score[currentword]);
-        showcontrols(False);
+        if Score[CurrentWord] < 250 then
+          Inc(Score[CurrentWord]);
+        ShowControls(false);
       end;
     end
     else
     begin
-      found := False;
-      if length(wrongletters) > 0 then
-        for i := 1 to length(wrongletters) do
-          if ch1 = wrongletters[i] then
-            found := True;
-      if found = False then
+      Found := false;
+      if Length(WrongLetters) > 0 then
+        for i := 1 to Length(WrongLetters) do
+          if ch1 = WrongLetters[i] then
+            Found := true;
+      if Found = false then
       begin
-        wrongletters := wrongletters + ch1;
-        if score[currentword] > 1 then
-          Dec(score[currentword]);
+        WrongLetters := WrongLetters + ch1;
+        if Score[CurrentWord] > 1 then
+          Dec(Score[CurrentWord]);
       end;
       case ch1 of
-        'Q': togglebox1.Checked := True;
-        'W': togglebox2.Checked := True;
-        'E': togglebox3.Checked := True;
-        'R': togglebox4.Checked := True;
-        'T': togglebox5.Checked := True;
-        'Y': togglebox6.Checked := True;
-        'U': togglebox7.Checked := True;
-        'I': togglebox8.Checked := True;
-        'O': togglebox9.Checked := True;
-        'P': togglebox10.Checked := True;
-        'A': togglebox11.Checked := True;
-        'S': togglebox12.Checked := True;
-        'D': togglebox13.Checked := True;
-        'F': togglebox14.Checked := True;
-        'G': togglebox15.Checked := True;
-        'H': togglebox16.Checked := True;
-        'J': togglebox17.Checked := True;
-        'K': togglebox18.Checked := True;
-        'L': togglebox19.Checked := True;
-        'Z': togglebox20.Checked := True;
-        'X': togglebox21.Checked := True;
-        'C': togglebox22.Checked := True;
-        'V': togglebox23.Checked := True;
-        'B': togglebox24.Checked := True;
-        'N': togglebox25.Checked := True;
-        'M': togglebox26.Checked := True;
+        'Q': ToggleBox1.Checked := true;
+        'W': ToggleBox2.Checked := true;
+        'E': ToggleBox3.Checked := true;
+        'R': ToggleBox4.Checked := true;
+        'T': ToggleBox5.Checked := true;
+        'Y': ToggleBox6.Checked := true;
+        'U': ToggleBox7.Checked := true;
+        'I': ToggleBox8.Checked := true;
+        'O': ToggleBox9.Checked := true;
+        'P': ToggleBox10.Checked := true;
+        'A': ToggleBox11.Checked := true;
+        'S': ToggleBox12.Checked := true;
+        'D': ToggleBox13.Checked := true;
+        'F': ToggleBox14.Checked := true;
+        'G': ToggleBox15.Checked := true;
+        'H': ToggleBox16.Checked := true;
+        'J': ToggleBox17.Checked := true;
+        'K': ToggleBox18.Checked := true;
+        'L': ToggleBox19.Checked := true;
+        'Z': ToggleBox20.Checked := true;
+        'X': ToggleBox21.Checked := true;
+        'C': ToggleBox22.Checked := true;
+        'V': ToggleBox23.Checked := true;
+        'B': ToggleBox24.Checked := true;
+        'N': ToggleBox25.Checked := true;
+        'M': ToggleBox26.Checked := true;
       end;
       ShowMessage('Нет такой буквы!');
     end;
 
-    label2draw;
+    Label2Draw;
   end;
 
-  if (key = 13) and (button1.Visible) then
-    newword;
+  if (key = 13) and (Button1.Visible) then
+    NewWord;
 end;
 
-procedure Tform1.showcontrols(setme: boolean);
+procedure Tform1.ShowControls(SetMe: boolean);
 begin
-  button1.Enabled := not setme;
-  button1.Visible := not setme;
+  Button1.Enabled := not SetMe;
+  Button1.Visible := not SetMe;
 
-  togglebox1.Visible := setme;
-  togglebox2.Visible := setme;
-  togglebox3.Visible := setme;
-  togglebox4.Visible := setme;
-  togglebox5.Visible := setme;
-  togglebox6.Visible := setme;
-  togglebox7.Visible := setme;
-  togglebox8.Visible := setme;
-  togglebox9.Visible := setme;
-  togglebox10.Visible := setme;
-  togglebox11.Visible := setme;
-  togglebox12.Visible := setme;
-  togglebox13.Visible := setme;
-  togglebox14.Visible := setme;
-  togglebox15.Visible := setme;
-  togglebox16.Visible := setme;
-  togglebox17.Visible := setme;
-  togglebox18.Visible := setme;
-  togglebox19.Visible := setme;
-  togglebox20.Visible := setme;
-  togglebox21.Visible := setme;
-  togglebox22.Visible := setme;
-  togglebox23.Visible := setme;
-  togglebox24.Visible := setme;
-  togglebox25.Visible := setme;
-  togglebox26.Visible := setme;
+  ToggleBox1.Visible := SetMe;
+  ToggleBox2.Visible := SetMe;
+  ToggleBox3.Visible := SetMe;
+  ToggleBox4.Visible := SetMe;
+  ToggleBox5.Visible := SetMe;
+  ToggleBox6.Visible := SetMe;
+  ToggleBox7.Visible := SetMe;
+  ToggleBox8.Visible := SetMe;
+  ToggleBox9.Visible := SetMe;
+  ToggleBox10.Visible := SetMe;
+  ToggleBox11.Visible := SetMe;
+  ToggleBox12.Visible := SetMe;
+  ToggleBox13.Visible := SetMe;
+  ToggleBox14.Visible := SetMe;
+  ToggleBox15.Visible := SetMe;
+  ToggleBox16.Visible := SetMe;
+  ToggleBox17.Visible := SetMe;
+  ToggleBox18.Visible := SetMe;
+  ToggleBox19.Visible := SetMe;
+  ToggleBox20.Visible := SetMe;
+  ToggleBox21.Visible := SetMe;
+  ToggleBox22.Visible := SetMe;
+  ToggleBox23.Visible := SetMe;
+  ToggleBox24.Visible := SetMe;
+  ToggleBox25.Visible := SetMe;
+  ToggleBox26.Visible := SetMe;
 
-  togglebox1.Checked := False;
-  togglebox2.Checked := False;
-  togglebox3.Checked := False;
-  togglebox4.Checked := False;
-  togglebox5.Checked := False;
-  togglebox6.Checked := False;
-  togglebox7.Checked := False;
-  togglebox8.Checked := False;
-  togglebox9.Checked := False;
-  togglebox10.Checked := False;
-  togglebox11.Checked := False;
-  togglebox12.Checked := False;
-  togglebox13.Checked := False;
-  togglebox14.Checked := False;
-  togglebox15.Checked := False;
-  togglebox16.Checked := False;
-  togglebox17.Checked := False;
-  togglebox18.Checked := False;
-  togglebox19.Checked := False;
-  togglebox20.Checked := False;
-  togglebox21.Checked := False;
-  togglebox22.Checked := False;
-  togglebox23.Checked := False;
-  togglebox24.Checked := False;
-  togglebox25.Checked := False;
-  togglebox26.Checked := False;
-
-  {togglebox1.Enabled:=true;
-  togglebox2.Enabled:=true;
-  togglebox3.Enabled:=true;
-  togglebox4.Enabled:=true;
-  togglebox5.Enabled:=true;
-  togglebox6.Enabled:=true;
-  togglebox7.Enabled:=true;
-  togglebox8.Enabled:=true;
-  togglebox9.Enabled:=true;
-  togglebox10.Enabled:=true;
-  togglebox11.Enabled:=true;
-  togglebox12.Enabled:=true;
-  togglebox13.Enabled:=true;
-  togglebox14.Enabled:=true;
-  togglebox15.Enabled:=true;
-  togglebox16.Enabled:=true;
-  togglebox17.Enabled:=true;
-  togglebox18.Enabled:=true;
-  togglebox19.Enabled:=true;
-  togglebox20.Enabled:=true;
-  togglebox21.Enabled:=true;
-  togglebox22.Enabled:=true;
-  togglebox23.Enabled:=true;
-  togglebox24.Enabled:=true;
-  togglebox25.Enabled:=true;
-  togglebox26.Enabled:=true;}
+  ToggleBox1.Checked := false;
+  ToggleBox2.Checked := false;
+  ToggleBox3.Checked := false;
+  ToggleBox4.Checked := false;
+  ToggleBox5.Checked := false;
+  ToggleBox6.Checked := false;
+  ToggleBox7.Checked := false;
+  ToggleBox8.Checked := false;
+  ToggleBox9.Checked := false;
+  ToggleBox10.Checked := false;
+  ToggleBox11.Checked := false;
+  ToggleBox12.Checked := false;
+  ToggleBox13.Checked := false;
+  ToggleBox14.Checked := false;
+  ToggleBox15.Checked := false;
+  ToggleBox16.Checked := false;
+  ToggleBox17.Checked := false;
+  ToggleBox18.Checked := false;
+  ToggleBox19.Checked := false;
+  ToggleBox20.Checked := false;
+  ToggleBox21.Checked := false;
+  ToggleBox22.Checked := false;
+  ToggleBox23.Checked := false;
+  ToggleBox24.Checked := false;
+  ToggleBox25.Checked := false;
+  ToggleBox26.Checked := false;
 end;
 
-procedure Tform1.label2draw;
+procedure Tform1.Label2Draw;
 var
   i: integer;
 begin
-  label3.Caption := 'Счёт слова = ' + IntToStr(score[currentword]);
-  label2.Caption := '';
-  for i := 1 to length(words[currentword, 1]) do
-    if not label2open[i] then
-      label2.Caption := label2.Caption + '?'
+  Label3.Caption := 'Счёт слова = ' + IntToStr(Score[CurrentWord]);
+  Label2.Caption := '';
+  for i := 1 to Length(Words[CurrentWord, 1]) do
+    if not Label2Open[i] then
+      Label2.Caption := Label2.Caption + '?'
     else
     begin
-      label2.Caption := label2.Caption + words[currentword, 1][i];
-      case words[currentword, 1][i] of
-        'Q': togglebox1.Visible := False;
-        'W': togglebox2.Visible := False;
-        'E': togglebox3.Visible := False;
-        'R': togglebox4.Visible := False;
-        'T': togglebox5.Visible := False;
-        'Y': togglebox6.Visible := False;
-        'U': togglebox7.Visible := False;
-        'I': togglebox8.Visible := False;
-        'O': togglebox9.Visible := False;
-        'P': togglebox10.Visible := False;
-        'A': togglebox11.Visible := False;
-        'S': togglebox12.Visible := False;
-        'D': togglebox13.Visible := False;
-        'F': togglebox14.Visible := False;
-        'G': togglebox15.Visible := False;
-        'H': togglebox16.Visible := False;
-        'J': togglebox17.Visible := False;
-        'K': togglebox18.Visible := False;
-        'L': togglebox19.Visible := False;
-        'Z': togglebox20.Visible := False;
-        'X': togglebox21.Visible := False;
-        'C': togglebox22.Visible := False;
-        'V': togglebox23.Visible := False;
-        'B': togglebox24.Visible := False;
-        'N': togglebox25.Visible := False;
-        'M': togglebox26.Visible := False;
+      Label2.Caption := Label2.Caption + Words[CurrentWord, 1][i];
+      case Words[CurrentWord, 1][i] of
+        'Q': ToggleBox1.Visible := false;
+        'W': ToggleBox2.Visible := false;
+        'E': ToggleBox3.Visible := false;
+        'R': ToggleBox4.Visible := false;
+        'T': ToggleBox5.Visible := false;
+        'Y': ToggleBox6.Visible := false;
+        'U': ToggleBox7.Visible := false;
+        'I': ToggleBox8.Visible := false;
+        'O': ToggleBox9.Visible := false;
+        'P': ToggleBox10.Visible := false;
+        'A': ToggleBox11.Visible := false;
+        'S': ToggleBox12.Visible := false;
+        'D': ToggleBox13.Visible := false;
+        'F': ToggleBox14.Visible := false;
+        'G': ToggleBox15.Visible := false;
+        'H': ToggleBox16.Visible := false;
+        'J': ToggleBox17.Visible := false;
+        'K': ToggleBox18.Visible := false;
+        'L': ToggleBox19.Visible := false;
+        'Z': ToggleBox20.Visible := false;
+        'X': ToggleBox21.Visible := false;
+        'C': ToggleBox22.Visible := false;
+        'V': ToggleBox23.Visible := false;
+        'B': ToggleBox24.Visible := false;
+        'N': ToggleBox25.Visible := false;
+        'M': ToggleBox26.Visible := false;
       end;
     end;
 end;
 
-procedure Tform1.newword;
+procedure Tform1.NewWord;
 var
   i, j: integer;
-  flg: boolean;
-  lastword: integer;
+  Flg: boolean;
+  LastWord: integer;
 begin
-  savescore;
-  wrongletters := '';
-  lastword := currentword;
-  showcontrols(True);
+  SaveScore;
+  WrongLetters := '';
+  LastWord := CurrentWord;
+  ShowControls(true);
   repeat
-    currentword := round(random * (nwords - 1)) + 1;
-    flg := False;
-    if (score[currentword] <= 3) or (random < 1 / (score[currentword] + 1)) then
-      flg := True;
-    if (score[currentword] = 0) and (random > 0.1) then
-      flg := False;
-  until (flg) and (currentword <> lastword);
-  label1.Caption := words[currentword, 2];
-  flg := False;
+    CurrentWord := Round(Random * (nWords - 1)) + 1;
+    Flg := false;
+    if (Score[CurrentWord] <= 3) or (Random < 1 / (Score[CurrentWord] + 1)) then
+      Flg := true;
+    if (Score[CurrentWord] = 0) and (Random > 0.1) then
+      Flg := false;
+  until (Flg) and (CurrentWord <> LastWord);
+  Label1.Caption := Words[CurrentWord, 2];
+  Flg := false;
   repeat
-    for i := 1 to length(words[currentword, 1]) do
-      if (random < 1 / (score[currentword] + 5)) and (score[currentword] < 10) then
-        label2open[i] := True
+    for i := 1 to Length(Words[CurrentWord, 1]) do
+      if (Random < 1 / (Score[CurrentWord] + 5)) and (Score[CurrentWord] < 10) then
+        Label2Open[i] := true
       else
-        label2open[i] := False;
-    if score[currentword] < 6 then
+        Label2Open[i] := false;
+    if Score[CurrentWord] < 6 then
     begin
-      label2open[1] := True;
-      if (score[currentword] < 4) and ((length(words[currentword, 1]) > 3) or
-        (random < 0.5)) then
+      Label2Open[1] := true;
+      if (Score[CurrentWord] < 4) and ((Length(Words[CurrentWord, 1]) > 3) or
+        (Random < 0.5)) then
       begin
         j := 1;
-        for i := 2 to length(words[currentword, 1]) do
-          if label2open[i] then
+        for i := 2 to Length(Words[CurrentWord, 1]) do
+          if Label2Open[i] then
             Inc(j);
-        if (length(words[currentword, 1]) - j > 2) or (random < 0.5) then
-          label2open[2] := True;
+        if (Length(Words[CurrentWord, 1]) - j > 2) or (Random < 0.5) then
+          Label2Open[2] := true;
       end;
     end;
 
-    for i := 1 to length(words[currentword, 1]) - 1 do
-      for j := i + 1 to length(words[currentword, 1]) do
-        if words[currentword, 1][i] = words[currentword, 1][j] then
+    for i := 1 to Length(Words[CurrentWord, 1]) - 1 do
+      for j := i + 1 to Length(Words[CurrentWord, 1]) do
+        if Words[CurrentWord, 1][i] = Words[CurrentWord, 1][j] then
         begin
-          label2open[i] := label2open[i] or label2open[j];
-          label2open[j] := label2open[i] or label2open[j];
+          Label2Open[i] := Label2Open[i] or Label2Open[j];
+          Label2Open[j] := Label2Open[i] or Label2Open[j];
         end;
-    for i := 1 to length(words[currentword, 1]) do
-      if label2open[i] = False then
-        flg := True;
-  until flg;
+    for i := 1 to Length(Words[CurrentWord, 1]) do
+      if Label2Open[i] = false then
+        Flg := true;
+  until Flg;
 
-  label2draw;
+  Label2Draw;
 end;
 
 procedure Tform1.SaveScore;
 var
   i: integer;
 begin
-  AssignFile(file2, 'parole.sco');
-  rewrite(file2);
-  for i := 1 to nwords do
-    Write(file2, score[i]);
-  closeFile(file2);
+  AssignFile(File2, 'parole.sco');
+  Rewrite(File2);
+  for i := 1 to nWords do
+    Write(File2, Score[i]);
+  CloseFile(File2);
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 var
-  nscore: integer;
+  nScore: integer;
 begin
-  AssignFile(file1, 'parole.txt');
-  reset(file1);
-  nwords := 0;
+  AssignFile(File1, 'parole.txt');
+  Reset(File1);
+  nWords := 0;
   repeat
-    Inc(nwords);
-    readln(file1, words[nwords, 1]);
-    readln(file1, words[nwords, 2]);
-    score[nwords] := 0;
-  until EOF(file1);
-  closeFile(file1);
+    Inc(nWords);
+    readln(File1, Words[nWords, 1]);
+    readln(File1, Words[nWords, 2]);
+    Score[nWords] := 0;
+  until EOF(File1);
+  CloseFile(File1);
 
-  AssignFile(file2, 'parole.sco');
+  AssignFile(File2, 'parole.sco');
   {$i-}
-  reset(file2);
+  Reset(File2);
   {$i+}
-  if ioresult <> 0 then
-    rewrite(file2);
-  for nscore := 1 to nwords do
-    if not EOF(file2) then
-      Read(file2, score[nscore])
+  if IOresult <> 0 then
+    Rewrite(File2);
+  for nScore := 1 to nWords do
+    if not EOF(File2) then
+      Read(File2, Score[nScore])
     else
-      score[nscore] := 0;
-  closeFile(file2);
+      Score[nScore] := 0;
+  CloseFile(File2);
 
-  randomize;
-  newword;
+  Randomize;
+  NewWord;
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-  newword;
+  NewWord;
 end;
 
 
