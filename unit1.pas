@@ -17,7 +17,6 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    Label4: TLabel;
     ToggleBox1: TToggleBox;
     ToggleBox10: TToggleBox;
     ToggleBox11: TToggleBox;
@@ -67,7 +66,7 @@ var
   Form1: TForm1;
   nwords,currentword: integer;
   wrongletters:string;
-  words: array[1..maxwords,1..2] of string[16];
+  words: array[1..maxwords,1..2] of string;
   score: array[1..maxwords] of byte;
   file1: text;
   file2: file of byte;
@@ -135,7 +134,7 @@ begin
        'N':togglebox25.checked:=true;
        'M':togglebox26.checked:=true;
       end;
-      ShowMessage('Нет такой буквы!!!')
+      ShowMessage('РќРµС‚ С‚Р°РєРѕР№ Р±СѓРєРІС‹!')
     end;
     
     label2draw;
@@ -202,12 +201,39 @@ begin
   togglebox24.checked:=false;
   togglebox25.checked:=false;
   togglebox26.checked:=false;
+
+  {togglebox1.Enabled:=true;
+  togglebox2.Enabled:=true;
+  togglebox3.Enabled:=true;
+  togglebox4.Enabled:=true;
+  togglebox5.Enabled:=true;
+  togglebox6.Enabled:=true;
+  togglebox7.Enabled:=true;
+  togglebox8.Enabled:=true;
+  togglebox9.Enabled:=true;
+  togglebox10.Enabled:=true;
+  togglebox11.Enabled:=true;
+  togglebox12.Enabled:=true;
+  togglebox13.Enabled:=true;
+  togglebox14.Enabled:=true;
+  togglebox15.Enabled:=true;
+  togglebox16.Enabled:=true;
+  togglebox17.Enabled:=true;
+  togglebox18.Enabled:=true;
+  togglebox19.Enabled:=true;
+  togglebox20.Enabled:=true;
+  togglebox21.Enabled:=true;
+  togglebox22.Enabled:=true;
+  togglebox23.Enabled:=true;
+  togglebox24.Enabled:=true;
+  togglebox25.Enabled:=true;
+  togglebox26.Enabled:=true;}
 end;
 
 procedure Tform1.label2draw;
 var i:integer;
 begin
-  label3.caption:='Счёт слова = '+inttostr(score[currentword]);
+  label3.caption:='РЎС‡С‘С‚ СЃР»РѕРІР° = '+inttostr(score[currentword]);
   label2.caption:='';
   for i:=1 to length(words[currentword,1]) do
    if not label2open[i] then

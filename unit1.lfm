@@ -10,13 +10,14 @@ object Form1: TForm1
   ClientWidth = 447
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
+  LCLVersion = '1.9.0.0'
   Visible = True
   object Label1: TLabel
     AnchorSideLeft.Side = asrBottom
     Left = 151
-    Height = 43
+    Height = 45
     Top = 48
-    Width = 145
+    Width = 144
     Alignment = taCenter
     Anchors = [akTop]
     Caption = 'Label1'
@@ -26,13 +27,14 @@ object Form1: TForm1
     Font.Name = 'Courier New'
     Font.Pitch = fpFixed
     ParentColor = False
+    ParentFont = False
   end
   object Label2: TLabel
     AnchorSideLeft.Side = asrBottom
     Left = 127
-    Height = 59
+    Height = 60
     Top = 136
-    Width = 193
+    Width = 192
     Alignment = taCenter
     Anchors = [akTop]
     Caption = 'Label2'
@@ -42,25 +44,22 @@ object Form1: TForm1
     Font.Name = 'Courier New'
     Font.Pitch = fpFixed
     ParentColor = False
+    ParentFont = False
   end
   object Label3: TLabel
-    Height = 20
-    Width = 47
+    Left = 0
+    Height = 15
+    Top = 0
+    Width = 43
     Caption = 'Label3'
     ParentColor = False
   end
-  object Label4: TLabel
-    Left = 313
-    Height = 20
-    Width = 134
-    Caption = 'www.bmyr.kiev.ua'
-    ParentColor = False
-  end
   object Button1: TButton
+    Left = 0
     Height = 93
     Top = 206
     Width = 447
-    Caption = 'œ–¿¬»À‹ÕŒ!!!'
+    Caption = '?????????!'
     Enabled = False
     Font.CharSet = RUSSIAN_CHARSET
     Font.Color = clBlack
@@ -68,6 +67,7 @@ object Form1: TForm1
     Font.Name = 'Arial'
     Font.Pitch = fpVariable
     OnClick = Button1Click
+    ParentFont = False
     TabOrder = 0
     Visible = False
   end
